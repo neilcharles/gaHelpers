@@ -18,4 +18,3 @@ ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions, join_col
     left_join(traffic_regional_summary, by = setNames(join_col, join_col))
 
 }
-
