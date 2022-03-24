@@ -9,7 +9,7 @@ ga_auth()
 
 account_list <- ga_account_list()
 
-ga_id <- 119440077  #97072265
+ga_id <- 97072265
 
 ## simple query to test connection, get 10 rows
 traffic <- google_analytics(ga_id,

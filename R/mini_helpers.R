@@ -33,7 +33,7 @@ ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions, join_col
     dplyr::left_join(populations, by = setNames('code', join_col)) %>%
     dplyr::mutate(sessions_per_m = sessions / (!!as.name(population_col)) * 1000000)
 
-  regions %>%
+  shapes %>%
     dplyr::left_join(traffic_regional_summary, by = setNames(join_col, join_col))
 
 }

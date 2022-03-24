@@ -7,6 +7,6 @@ process_geo <- function(){
     janitor::clean_names() %>%
     dplyr::select(code, mid_2020)
 
-  usethis::use_data(shapes_regions, populations)
+  usethis::use_data(shapes_regions, populations, overwrite = TRUE)
 
 }
