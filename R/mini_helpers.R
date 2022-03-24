@@ -1,8 +1,27 @@
+#' Title
+#'
+#' @param ga
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ga_to_points <- function(ga){
   sf::st_as_sf(ga, coords = c("longitude", "latitude"),
                         crs = 4326, agr = "constant")
 }
 
+#' Title
+#'
+#' @param ga_points
+#' @param shapes
+#' @param join_col
+#' @param population_col
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions, join_col = 'RGN20CD', population_col = 'mid_2020'){
   traffic_match <- shapes %>%
     sf::st_join(ga_points) %>%
