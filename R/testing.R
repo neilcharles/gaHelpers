@@ -20,7 +20,6 @@ traffic <- google_analytics(ga_id,
 
 write_rds(traffic, "nr.RDS")
 
-
 traffic_points = ga_to_points(traffic)
 
 test <- ga_points_shapes_lookup(traffic_points)
@@ -42,6 +41,8 @@ campaign_date_min <- '2021-12-01'
 campaign_date_max <- '2021-12-31'
 
 test_region <- 'London'
+
+traffic_match <- ga_points_shapes_lookup(traffic_points)
 
 chart_data <- traffic_match %>%
   group_by(date, RGN20NM, RGN20CD) %>%

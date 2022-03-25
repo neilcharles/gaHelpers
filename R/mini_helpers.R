@@ -22,10 +22,26 @@ ga_to_points <- function(ga){
 #' @export
 #'
 #' @examples
-ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions, join_col = 'RGN20CD', population_col = 'mid_2020'){
-  traffic_match <- shapes %>%
+ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions){
+  shapes %>%
     sf::st_join(ga_points) %>%
     sf::st_drop_geometry()
+}
+
+#' Title
+#'
+#' @param ga_points
+#' @param shapes
+#' @param join_col
+#' @param population_col
+#'
+#' @return
+#' @export
+#'
+#' @examples
+ga_to_polygons <- function(ga_points, shapes = shapes_regions, join_col = 'RGN20CD', population_col = 'mid_2020'){
+
+  traffic_match <- ga_points_shapes_lookup(ga_points, shapes)
 
   traffic_regional_summary <- traffic_match %>%
     dplyr::group_by_at(join_col) %>%
@@ -35,5 +51,4 @@ ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions, join_col
 
   shapes %>%
     dplyr::left_join(traffic_regional_summary, by = setNames(join_col, join_col))
-
 }
