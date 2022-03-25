@@ -3,4 +3,5 @@
 export("%>%")
 export(ga_points_shapes_lookup)
 export(ga_to_points)
+export(ga_to_polygons)
 importFrom(magrittr,"%>%")

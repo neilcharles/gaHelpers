@@ -22,7 +22,7 @@ write_rds(traffic, "nr.RDS")
 
 traffic_points = ga_to_points(traffic)
 
-test <- ga_points_shapes_lookup(traffic_points)
+test <- ga_to_polygons(traffic_points)
 
 test %>%
   leaflet() %>%
