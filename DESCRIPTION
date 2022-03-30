@@ -14,5 +14,11 @@ Depends:
 RoxygenNote: 7.1.2
 Imports: 
     magrittr,
-    sf
-    
+    sf,
+	  rUKcensus,
+	  dplyr
+Remotes:
+	neilcharles/rUKcensus
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

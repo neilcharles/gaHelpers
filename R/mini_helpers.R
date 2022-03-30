@@ -22,8 +22,9 @@ ga_to_points <- function(ga){
 #' @export
 #'
 #' @examples
-ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions){
+ga_points_shapes_lookup <- function(ga_points, shapes = rUKcensus::shapes_lad){
   shapes %>%
+    dplyr::select(geo_id, geometry) %>%
     sf::st_join(ga_points) %>%
     sf::st_drop_geometry()
 }
@@ -39,16 +40,14 @@ ga_points_shapes_lookup <- function(ga_points, shapes = shapes_regions){
 #' @export
 #'
 #' @examples
-ga_to_polygons <- function(ga_points, shapes = shapes_regions, join_col = 'RGN20CD', population_col = 'mid_2020'){
+ga_to_polygons <- function(ga_points, shapes = rUKcensus::shapes_lad){
 
-  traffic_match <- ga_points_shapes_lookup(ga_points, shapes)
+  traffic_match <- ga_points_shapes_lookup(ga_points, rUKcensus::shapes_lad)
 
   traffic_regional_summary <- traffic_match %>%
-    dplyr::group_by_at(join_col) %>%
-    dplyr::summarise(sessions = sum(sessions)) %>%
-    dplyr::left_join(populations, by = setNames('code', join_col)) %>%
-    dplyr::mutate(sessions_per_m = sessions / (!!as.name(population_col)) * 1000000)
+    dplyr::group_by(geo_id) %>%
+    dplyr::summarise(dplyr::across(tidyselect:::where(is.numeric), sum))
 
   shapes %>%
-    dplyr::left_join(traffic_regional_summary, by = setNames(join_col, join_col))
+    dplyr::left_join(traffic_regional_summary, by = "geo_id")
 }

@@ -1,7 +1,9 @@
 process_geo <- function(){
 
-  shapes_regions <- sf::st_read('inst/extdata/geo/Regions_(December_2020)_EN_BFC.shp') %>%
-    sf::st_transform(crs = 4326)
+  write_rds(geo_out_oa11cd, "out/shapes_oa11cd.rds")
+  write_rds(geo_out_lsoa11cd, "out/shapes_lsoa11cd.rds")
+  write_rds(geo_out_msoa11cd, "out/shapes_msoa11cd.rds")
+  write_rds(geo_out_ladcd, "out/shapes_ladcd.rds")
 
   populations <- readxl::read_xls('inst/extdata/geo/ukpopestimatesmid2020on2021geography.xls', 'MYE4', skip = 7) %>%
     janitor::clean_names() %>%

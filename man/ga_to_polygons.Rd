@@ -4,12 +4,7 @@
 \alias{ga_to_polygons}
 \title{Title}
 \usage{
-ga_to_polygons(
-  ga_points,
-  shapes = shapes_regions,
-  join_col = "RGN20CD",
-  population_col = "mid_2020"
-)
+ga_to_polygons(ga_points, shapes = rUKcensus::shapes_lad)
 }
 \arguments{
 \item{population_col}{}

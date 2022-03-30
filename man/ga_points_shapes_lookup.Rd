@@ -4,7 +4,7 @@
 \alias{ga_points_shapes_lookup}
 \title{Title}
 \usage{
-ga_points_shapes_lookup(ga_points, shapes = shapes_regions)
+ga_points_shapes_lookup(ga_points, shapes = rUKcensus::shapes_lad)
 }
 \arguments{
 \item{population_col}{}
